@@ -1,7 +1,5 @@
 package com.rrat.advancedstateandsideeffets.data
 
-import com.rrat.advancedstateandsideeffets.data.ExploreModel
-
 interface Repository {
     fun getDestinations() : List<ExploreModel>
     fun getHotels() : List<ExploreModel>
