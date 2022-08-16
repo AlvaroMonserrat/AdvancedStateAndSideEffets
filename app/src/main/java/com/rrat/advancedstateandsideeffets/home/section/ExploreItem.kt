@@ -19,12 +19,13 @@ import com.rrat.advancedstateandsideeffets.data.ExploreModel
 @Composable
 fun ExploreItem(
     modifier: Modifier = Modifier,
-    item: ExploreModel
+    item: ExploreModel,
+    onItemClicked: (ExploreModel)->Unit
 ){
     Row(
         modifier = modifier
             .padding(top = 12.dp, bottom = 12.dp)
-            .clickable { }
+            .clickable { onItemClicked(item)}
     ) {
         Surface(Modifier.size(width = 60.dp, height = 60.dp), RoundedCornerShape(4.dp)) {
             Box{

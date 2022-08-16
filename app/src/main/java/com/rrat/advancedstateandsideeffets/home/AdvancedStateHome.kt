@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
+import com.rrat.advancedstateandsideeffets.data.ExploreModel
 import com.rrat.advancedstateandsideeffets.ui.componets.BasicDrawer
 import kotlinx.coroutines.launch
 
@@ -21,7 +22,8 @@ enum class RaffleScreen {
 
 @Composable
 fun AdvancedStateHome(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onItemClicked: (ExploreModel)->Unit
 ){
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
@@ -40,7 +42,8 @@ fun AdvancedStateHome(
                 coroutineScope.launch {
                     scaffoldState.drawerState.open()
                 }
-            }
+            },
+            onItemClicked = onItemClicked
         )
     }
 }
@@ -48,5 +51,5 @@ fun AdvancedStateHome(
 @Preview
 @Composable
 fun AdvancedStateHomePreview(){
-    AdvancedStateHome()
+    AdvancedStateHome(){}
 }

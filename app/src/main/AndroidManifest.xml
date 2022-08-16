@@ -3,7 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rrat.advancedstateandsideeffets">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+    Android 11 package visibility changes require that apps specify which
+    set of other packages on the device that they can access. Since this
+    sample uses Google Maps, specifying the Google Maps package name is
+    required so that the buttons on the Map toolbar launch the Google Maps app.
+-->
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
+
     <application
+
         android:name=".AdvancedStateApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +27,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdvancedStateAndSideEffets"
         tools:targetApi="31">
+
+
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}"/>
+
+        <activity
+
+            android:name=".details.DetailsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".home.MainActivity"
             android:exported="true"

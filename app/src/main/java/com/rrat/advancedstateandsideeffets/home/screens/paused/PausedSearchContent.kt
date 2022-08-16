@@ -7,10 +7,12 @@ import com.rrat.advancedstateandsideeffets.ui.componets.Search
 import com.rrat.advancedstateandsideeffets.ui.theme.AdvancedStateAndSideEffetsTheme
 
 @Composable
-fun PausedSearchContent(){
+fun PausedSearchContent(
+    onPeopleChanged: (Int)->Unit
+){
     Search {
         PeopleUserInput(
-
+            onPeopleChanged=onPeopleChanged
         )
     }
 }
@@ -19,6 +21,6 @@ fun PausedSearchContent(){
 @Composable
 fun PausedSearchContentPreview(){
     AdvancedStateAndSideEffetsTheme() {
-        PausedSearchContent()
+        PausedSearchContent(){}
     }
 }

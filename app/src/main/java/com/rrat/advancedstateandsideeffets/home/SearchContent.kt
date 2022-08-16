@@ -8,11 +8,20 @@ import com.rrat.advancedstateandsideeffets.home.screens.paused.PausedSearchConte
 
 @Composable
 fun SearchContent(
-    tabSelected: RaffleScreen
+    tabSelected: RaffleScreen,
+    viewModel: MainViewModel,
+    onPeopleChanged: (Int) -> Unit
 ){
     when(tabSelected){
-        RaffleScreen.Active -> ActiveSearchContent()
-        RaffleScreen.Paused -> PausedSearchContent()
-        RaffleScreen.Draw -> DrawSearchContent()
+        RaffleScreen.Active -> ActiveSearchContent(
+            onPeopleChanged = onPeopleChanged,
+            onToDestinationChanged = {viewModel.toDestinationChanged(it)}
+        )
+        RaffleScreen.Paused -> PausedSearchContent(
+            onPeopleChanged = onPeopleChanged
+        )
+        RaffleScreen.Draw -> DrawSearchContent(
+            onPeopleChanged = onPeopleChanged
+        )
     }
 }

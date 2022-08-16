@@ -5,6 +5,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.rrat.advancedstateandsideeffets.data.ExploreModel
 import com.rrat.advancedstateandsideeffets.ui.componets.HomeTabBar
 
 
@@ -13,9 +14,11 @@ import com.rrat.advancedstateandsideeffets.ui.componets.HomeTabBar
 fun AdvancedStateContent(
     modifier: Modifier = Modifier,
     openDrawer: ()->Unit,
-    viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+    onItemClicked: (ExploreModel)->Unit
 ){
 
+    val onPeopleChanged: (Int)->Unit = { viewModel.updatePeople(it) }
     var tabSelected by remember { mutableStateOf(RaffleScreen.Active)}
 
     BackdropScaffold(
@@ -28,12 +31,17 @@ fun AdvancedStateContent(
             onTabSelected = {tabSelected = it}
         ) },
         backLayerContent = {
-            SearchContent(tabSelected = tabSelected)
+            SearchContent(
+                tabSelected = tabSelected,
+                viewModel = viewModel,
+                onPeopleChanged = onPeopleChanged
+            )
         },
         frontLayerContent = {
             FrontContent(
                 tabSelected = tabSelected,
-                viewModel = viewModel
+                viewModel = viewModel,
+                onItemClicked = onItemClicked
             )
         }
     )
